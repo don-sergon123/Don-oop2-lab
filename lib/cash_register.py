@@ -33,7 +33,7 @@ class CashRegister:
         self.previous_transactions.append(transaction)
 
     def apply_discount(self):
-        if not self.previous_transactions:
+        if not self.previous_transactions or self.total == 0:
             print("There is no discount to apply.")
             return
 
