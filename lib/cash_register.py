@@ -22,7 +22,6 @@ class CashRegister:
     def add_item(self, item, price, quantity=1):
         total_price = price * quantity
         self.total += total_price
-        self.items.append(item)
 
         self.items.extend([item] * quantity)
 
@@ -40,7 +39,12 @@ class CashRegister:
 
         discount_amount = self.total * (self.discount / 100)
         self.total -= discount_amount
+
         self.previous_transactions.pop()
+
+        formatted_total = int(
+            self.total) if self.total.is_integer() else self.total
+        print(f"After the discount, the total comes to ${formatted_total}.")
 
     def void_last_transaction(self):
         if not self.previous_transactions:
